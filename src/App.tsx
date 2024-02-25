@@ -22,19 +22,20 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        {options.map((value, index) => (
+          <div>
+            <input
+              key={index}
+              value={value}
+              onChange={(e) => {
+                const newOptions = [...options]; // Create a copy of the options array
+                newOptions[index] = e.target.value; // Update the value at the specified index
+                setOptions(newOptions); // Update the state with the modified options array
+              }}
+            />
+          </div>
+        ))}
         <div>
-          <input
-            type="text"
-            placeholder="Option  1"
-            value={options[0]}
-            onChange={(e) => setOptions([e.target.value, options[1]])}
-          />
-          <input
-            type="text"
-            placeholder="Option  2"
-            value={options[1]}
-            onChange={(e) => setOptions([options[0], e.target.value])}
-          />
           <button onClick={createRandomSelection}>
             Create Random Selection
           </button>
