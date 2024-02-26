@@ -19,6 +19,11 @@ function App() {
     }
   };
 
+  function addOption(): void {
+    const addedOption = `Option ${options.length + 1}`;
+    setOptions([...options, addedOption]);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -35,6 +40,9 @@ function App() {
             />
           </div>
         ))}
+        <div>
+          <button onClick={addOption}>Add option</button>
+        </div>
         <div>
           <button onClick={createRandomSelection}>
             Create Random Selection
