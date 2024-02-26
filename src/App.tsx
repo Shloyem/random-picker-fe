@@ -24,6 +24,18 @@ function App() {
     setOptions([...options, addedOption]);
   }
 
+  function updateOption(index: number, newOption: string): void {
+    const newOptions = [...options];
+    newOptions[index] = newOption;
+    setOptions(newOptions);
+  }
+
+  function removeOption(index: number): void {
+    const newOptions = [...options];
+    newOptions.splice(index, 1);
+    setOptions(newOptions);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -33,11 +45,20 @@ function App() {
               key={index}
               value={value}
               onChange={(e) => {
-                const newOptions = [...options]; // Create a copy of the options array
-                newOptions[index] = e.target.value; // Update the value at the specified index
-                setOptions(newOptions); // Update the state with the modified options array
+                updateOption(index, e.target.value);
               }}
             />
+            {index >= 2 ? (
+              <button
+                onClick={() => {
+                  removeOption(index);
+                }}
+              >
+                Remove option
+              </button>
+            ) : (
+              <div></div>
+            )}
           </div>
         ))}
         <div>
