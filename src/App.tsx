@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import axios from 'axios';
+import OptionsContainer from './OptionsContainer';
 
 function App() {
   const [options, setOptions] = useState(['Option  1', 'Option  2']);
@@ -19,51 +20,10 @@ function App() {
     }
   };
 
-  function addOption(): void {
-    const addedOption = `Option ${options.length + 1}`;
-    setOptions([...options, addedOption]);
-  }
-
-  function updateOption(index: number, newOption: string): void {
-    const newOptions = [...options];
-    newOptions[index] = newOption;
-    setOptions(newOptions);
-  }
-
-  function removeOption(index: number): void {
-    const newOptions = [...options];
-    newOptions.splice(index, 1);
-    setOptions(newOptions);
-  }
-
   return (
     <div className="App">
       <header className="App-header">
-        {options.map((value, index) => (
-          <div>
-            <input
-              key={index}
-              value={value}
-              onChange={(e) => {
-                updateOption(index, e.target.value);
-              }}
-            />
-            {index >= 2 ? (
-              <button
-                onClick={() => {
-                  removeOption(index);
-                }}
-              >
-                Remove option
-              </button>
-            ) : (
-              <div></div>
-            )}
-          </div>
-        ))}
-        <div>
-          <button onClick={addOption}>Add option</button>
-        </div>
+        <OptionsContainer options={options} setOptions={setOptions} />
         <div>
           <button onClick={createRandomSelection}>
             Create Random Selection
