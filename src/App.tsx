@@ -20,6 +20,10 @@ function App() {
     }
   };
 
+  function copyLink() {
+    navigator.clipboard.writeText(link);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -28,7 +32,15 @@ function App() {
           <button onClick={createRandomSelection}>
             Create Random Selection
           </button>
-          {link && <p>Share this link: {link}</p>}
+          {link && (
+            <p>
+              Share this link:
+              <a target="_blank" href={link}>
+                {link}
+              </a>
+              <button onClick={copyLink}>Copy link</button>
+            </p>
+          )}
         </div>
       </header>
     </div>
