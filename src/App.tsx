@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './App.css';
 import axios from 'axios';
 import OptionsContainer from './OptionsContainer';
+import getResult from './services/getResult';
 
 function App() {
   const [options, setOptions] = useState(['Option  1', 'Option  2']);
@@ -24,6 +25,24 @@ function App() {
     navigator.clipboard.writeText(link);
   }
 
+  // temporary function
+  function check() {
+    if (link) {
+      const lastIndex = link.lastIndexOf('/');
+      const id = link.substring(lastIndex + 1);
+      console.log('id %s', id);
+
+      getResult(id).then(
+        (result1) => {
+          console.log({ result1 });
+        },
+        () => {
+          console.error();
+        },
+      );
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -39,6 +58,7 @@ function App() {
                 {link}
               </a>
               <button onClick={copyLink}>Copy link</button>
+              <button onClick={check}>Get result</button>
             </p>
           )}
         </div>
