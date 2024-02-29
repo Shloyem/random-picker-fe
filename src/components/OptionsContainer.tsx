@@ -39,6 +39,7 @@ export default function OptionsContainer(props: propsInfo): JSX.Element {
           />
           {index >= 2 ? (
             <button
+              key={index}
               onClick={() => {
                 removeOption(index);
               }}
@@ -46,7 +47,7 @@ export default function OptionsContainer(props: propsInfo): JSX.Element {
               Remove option
             </button>
           ) : (
-            <div></div>
+            <></>
           )}
         </div>
       ))}

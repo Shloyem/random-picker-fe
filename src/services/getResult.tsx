@@ -1,3 +1,4 @@
+// TODO: add error handling
 export default async function getResult(id: string): Promise<string> {
   return fetch(`http://localhost:3001/result/${id}`, {})
     .then((response) => {
