@@ -1,12 +1,18 @@
+// ADD TYPE INSTEAD OF OBJECT
+
 // TODO: add error handling
-export default async function getResult(id: string): Promise<string> {
-  return fetch(`http://localhost:3001/result/${id}`, {})
-    .then((response) => {
-      // console.log({ response });
-      return response.json();
-    })
-    .then((jsonObject) => {
-      // console.log({ jsonObject });
-      return jsonObject.result;
-    });
+
+type Draw = {
+  result: string;
+  options: string[];
+  createdAt: Date;
+  expiresAt: Date;
+  drawAt: Date;
+};
+
+export default async function getResult(id: string): Promise<Draw> {
+  return fetch(`http://localhost:3001/result/${id}`, {}).then((response) => {
+    console.log({ response });
+    return response.json();
+  });
 }
