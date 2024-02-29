@@ -29,9 +29,8 @@ export default function OptionsContainer(props: propsInfo): JSX.Element {
   return (
     <div>
       {options.map((value, index) => (
-        <div>
+        <div key={`${value}-${index}`}>
           <input
-            key={index}
             value={value}
             onChange={(e) => {
               updateOption(index, e.target.value);
