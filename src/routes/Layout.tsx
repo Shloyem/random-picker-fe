@@ -8,9 +8,9 @@ function Layout(): JSX.Element {
           <li>
             <Link to="/">Home</Link>
           </li>
-          <li>
-            <Link to="/result/">To fix</Link>
-          </li>
+          {/* <li>
+            <Link to="/result/">TODO: Add last generated ID</Link>
+          </li> */}
         </ul>
       </nav>
       <Outlet />

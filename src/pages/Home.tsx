@@ -12,7 +12,7 @@ function Home() {
         options,
       });
       console.log('Received created ID: %s', response.data.id);
-      setLink(`http://localhost:3000  /result/${response.data.id}`);
+      setLink(`http://localhost:3000/result/${response.data.id}`);
     } catch (error) {
       console.error('Failed to create random selection', error);
     }
