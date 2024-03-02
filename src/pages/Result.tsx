@@ -1,14 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import getResult from '../services/getResult';
-
-type Draw = {
-  result: string;
-  options: string[];
-  createdAt: Date;
-  expiresAt: Date;
-  drawAt: Date;
-};
+import { Draw } from '../types/Draw';
 
 const initValue: Draw = {
   result: 'No result available',
@@ -51,6 +44,7 @@ export default function Result(): JSX.Element {
             Available Options: {draw.options.join(', ')}
             <br />
             Created On: {new Date(draw.createdAt).toLocaleString()}
+            <br />
             Drawn On: {new Date(draw.drawAt).toLocaleString()}
           </>
         ) : (
