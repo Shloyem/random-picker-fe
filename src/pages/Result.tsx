@@ -7,7 +7,7 @@ const RESULT_DEFAULT = 'Loading result';
 
 const initValue: Draw = {
   result: RESULT_DEFAULT,
-  options: ['Option  1', 'Option  2'],
+  options: ['Option 1', 'Option 2'],
   createdAt: new Date(0),
   expiresAt: new Date(0),
   drawAt: new Date(0),
