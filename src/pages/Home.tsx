@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import axiosInstance from '../services/axiosInstance';
 import OptionsContainer from '../components/OptionsContainer';
 
 function Home() {
@@ -8,9 +8,12 @@ function Home() {
 
   const createRandomSelection = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/create', {
-        options,
-      });
+      const response = await axiosInstance.post(
+        'http://localhost:3001/create',
+        {
+          options,
+        },
+      );
       console.log('Received created ID: %s', response.data.id);
       setLink(`http://localhost:3000/result/${response.data.id}`);
     } catch (error) {
