@@ -48,7 +48,7 @@ export default function Result(): JSX.Element {
           <br />
           <br />
           <br />
-          Available Options: {draw.options.join(', ')}
+          Available Options Were: {draw.options.join(', ')}
           <br />
           Created On: {new Date(draw.createdAt).toLocaleString()}
           <br />
