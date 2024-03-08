@@ -1,0 +1,12 @@
+Should be installed from create-react-app. If not:
+
+npm install --save-dev jest
+
+To run:
+npm test
+
+More info:
+https://jestjs.io/docs/mock-functions
+
+Important troubleshoot in package.json:
+https://stackoverflow.com/questions/73958968/cannot-use-import-statement-outside-a-module-with-axios/74297004#74297004
