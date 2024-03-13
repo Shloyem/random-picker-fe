@@ -1,6 +1,6 @@
 import { Draw } from '../../types/Draw';
 
-const drawMock: Draw = {
+const drawMockData: Draw = {
   options: [
     'Option 1',
     'Option 2',
@@ -16,4 +16,7 @@ const drawMock: Draw = {
   expiresAt: new Date(1709838508401),
 };
 
+const drawMock: any = {
+  data: drawMockData
+}
 export { drawMock };
