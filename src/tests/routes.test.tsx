@@ -16,13 +16,12 @@ it('should check layout has home link', () => {
   expect(div.innerHTML.indexOf('<a href="/">Home</a>')).toBeGreaterThan(0);
 });
 
-it('should check layout has home link - tested different way for learning', () => {
+it('should check layout - in the preferred way using React Testing Library', () => {
   render(
     <MemoryRouter>
       <Layout />
     </MemoryRouter>,
   );
 
-  const link = screen.getByText('Home');
-  expect(link).toBeInTheDocument();
+  expect(screen.getByText('Home')).toBeInTheDocument();
 });
