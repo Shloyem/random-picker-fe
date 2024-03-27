@@ -6,7 +6,7 @@ export default async function getResult(
 ): Promise<Draw | { error: string; originalError: Error }> {
   try {
     const response = await axiosInstance.get(`/result/${id}`);
-    console.log({ response });
+    console.log('Response object: ', { response });
     return response.data;
   } catch (error) {
     const typedError = error as Error;

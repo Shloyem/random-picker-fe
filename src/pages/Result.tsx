@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import getResult from '../services/getResult';
 import { Draw } from '../types/Draw';
@@ -20,7 +20,14 @@ export default function Result(): JSX.Element {
   let params = useParams();
   let id: string = params.id || '';
 
-  useEffect(getResults, []);
+  const initialized = useRef(false);
+
+  useEffect(() => {
+    if (!initialized.current) {
+      initialized.current = true;
+      getResults();
+    }
+  }, []);
 
   function getResults() {
     getResult(id).then(
