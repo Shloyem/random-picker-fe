@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import getResult from '../services/getResult';
+import { getResult, generateResult } from '../services/resultService';
 import { Draw } from '../types/Draw';
 
 const RESULT_DEFAULT = 'Loading result';
@@ -47,15 +47,41 @@ export default function Result(): JSX.Element {
     );
   }
 
+  function generateResults() {
+    generateResult(id).then(
+      (res) => {
+        if ('error' in res) {
+          console.error(res.error, res.originalError);
+          setError(res.error);
+        } else {
+          setDraw(res);
+        }
+      },
+      (e) => {
+        // This catch block will only catch errors thrown by the promise itself, not errors returned by the service
+        console.error(e);
+        setError('An unexpected error occurred.');
+      },
+    );
+  }
+
   return (
     <>
-      {!error && draw.result !== RESULT_DEFAULT && (
+      {!error && (
         <>
-          Draw Result: {draw.result}
+          {draw.result !== RESULT_DEFAULT && draw.result !== null ? (
+            <>
+              Draw Result: {draw.result}
+              <br />
+            </>
+          ) : (
+            <p>
+              Result not generated yet.
+              <button onClick={generateResults}>Generate Result</button>
+            </p>
+          )}
           <br />
-          <br />
-          <br />
-          Available Options Were: {draw.options.join(', ')}
+          Available Options: {draw.options.join(', ')}
           <br />
           Created On: {new Date(draw.createdAt).toLocaleString()}
           <br />

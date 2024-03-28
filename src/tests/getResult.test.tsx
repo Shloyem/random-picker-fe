@@ -1,4 +1,4 @@
-import getResult from '../services/getResult';
+import { getResult } from '../services/resultService';
 import axiosInstance from '../services/axiosInstance';
 import { drawMock } from './mocks/drawMock';
 import errorMock from './mocks/axiosNoBackendErrorMock';
