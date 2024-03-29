@@ -73,6 +73,7 @@ export default function Result(): JSX.Element {
             <>
               Draw Result: {draw.result}
               <br />
+              Drawn On: {new Date(draw.drawAt).toLocaleString()}
             </>
           ) : (
             <p>
@@ -84,8 +85,6 @@ export default function Result(): JSX.Element {
           Available Options: {draw.options.join(', ')}
           <br />
           Created On: {new Date(draw.createdAt).toLocaleString()}
-          <br />
-          Drawn On: {new Date(draw.drawAt).toLocaleString()}
         </>
       )}
       {error && <p className="error-message">{error}</p>}
