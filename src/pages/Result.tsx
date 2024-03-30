@@ -75,9 +75,12 @@ export default function Result(): JSX.Element {
               <br />
               Drawn On: {new Date(draw.drawAt).toLocaleString()}
             </>
+          ) : draw.result === RESULT_DEFAULT ? (
+            <p>Result is loading.</p>
           ) : (
             <p>
               Result not generated yet.
+              <br />
               <button onClick={generateResults}>Generate Result</button>
             </p>
           )}
