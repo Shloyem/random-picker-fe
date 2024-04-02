@@ -1,0 +1,4 @@
+Recommeded to run:
+npm audit fix --force
+
+Specially when depandabot shouts you have critical vulerabilities

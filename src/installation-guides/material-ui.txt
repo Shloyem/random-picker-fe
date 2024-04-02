@@ -1,5 +1,6 @@
 Documentation at:
 https://mui.com/material-ui/
+https://mui.com/material-ui/getting-started/installation/
 
 To install:
 npm install @mui/material @emotion/react @emotion/styled
