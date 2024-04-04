@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { getResult, generateResult } from '../services/resultService';
 import { Draw } from '../types/Draw';
+import withErrorHandling from '../utils/withErrorHandling';
 
 const RESULT_DEFAULT = 'Loading result';
 
@@ -22,48 +23,15 @@ export default function Result(): JSX.Element {
 
   const initialized = useRef(false);
 
+  const getResults = withErrorHandling(getResult, setDraw, setError);
+  const generateResults = withErrorHandling(generateResult, setDraw, setError);
+
   useEffect(() => {
     if (!initialized.current) {
       initialized.current = true;
-      getResults();
+      getResults(id);
     }
   }, []);
-
-  function getResults() {
-    getResult(id).then(
-      (res) => {
-        if ('error' in res) {
-          console.error(res.error, res.originalError);
-          setError(res.error);
-        } else {
-          setDraw(res);
-        }
-      },
-      (e) => {
-        // This catch block will only catch errors thrown by the promise itself, not errors returned by the service
-        console.error(e);
-        setError('An unexpected error occurred.');
-      },
-    );
-  }
-
-  function generateResults() {
-    generateResult(id).then(
-      (res) => {
-        if ('error' in res) {
-          console.error(res.error, res.originalError);
-          setError(res.error);
-        } else {
-          setDraw(res);
-        }
-      },
-      (e) => {
-        // This catch block will only catch errors thrown by the promise itself, not errors returned by the service
-        console.error(e);
-        setError('An unexpected error occurred.');
-      },
-    );
-  }
 
   return (
     <>
@@ -73,6 +41,7 @@ export default function Result(): JSX.Element {
             <>
               Draw Result: {draw.result}
               <br />
+              <br />
               Drawn On: {new Date(draw.drawAt).toLocaleString()}
             </>
           ) : draw.result === RESULT_DEFAULT ? (
@@ -81,7 +50,9 @@ export default function Result(): JSX.Element {
             <p>
               Result not generated yet.
               <br />
-              <button onClick={generateResults}>Generate Result</button>
+              <button onClick={() => generateResults(id)}>
+                Generate Result
+              </button>
             </p>
           )}
           <br />
