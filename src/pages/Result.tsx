@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getResult, generateResult } from '../services/resultService';
 import { Draw } from '../types/Draw';
 import withErrorHandling from '../utils/withErrorHandling';
+import Button from '@mui/material/Button';
 
 const RESULT_DEFAULT = 'Loading result';
 
@@ -50,9 +51,13 @@ export default function Result(): JSX.Element {
             <p>
               Result not generated yet.
               <br />
-              <button onClick={() => generateResults(id)}>
+              <Button
+                variant="contained"
+                color="success"
+                onClick={() => generateResults(id)}
+              >
                 Generate Result
-              </button>
+              </Button>
             </p>
           )}
           <br />
