@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getResult, generateResult } from '../services/resultService';
 import { Draw } from '../types/Draw';
 import withErrorHandling from '../utils/withErrorHandling';
+import useEffectOnce from '../utils/useEffectOnce';
 import Button from '@mui/material/Button';
 
 const RESULT_DEFAULT = 'Loading result';
@@ -22,17 +23,20 @@ export default function Result(): JSX.Element {
   let params = useParams();
   let id: string = params.id || '';
 
-  const initialized = useRef(false);
-
   const getResults = withErrorHandling(getResult, setDraw, setError);
   const generateResults = withErrorHandling(generateResult, setDraw, setError);
 
-  useEffect(() => {
-    if (!initialized.current) {
-      initialized.current = true;
-      getResults(id);
-    }
-  }, []);
+  const initialized = useRef(false);
+
+  // Using a custom hook to run getResults only once on component mount
+  // with optional cleanup and dependencies
+  useEffectOnce(() => {
+    getResults(id);
+    // Example of a cleanup function
+    return () => {
+      console.log('Cleaning up...');
+    };
+  }, [id]); // Dependencies array, in this case, the effect will re-run if 'id' changes
 
   return (
     <>
