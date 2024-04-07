@@ -1,3 +1,6 @@
+import Button from '@mui/material/Button';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 type propsInfo = {
   options: string[];
   setOptions: React.Dispatch<React.SetStateAction<string[]>>;
@@ -37,14 +40,17 @@ export default function OptionsContainer(props: propsInfo): JSX.Element {
             }}
           />
           {index >= 2 ? (
-            <button
+            <Button
+              variant="outlined"
+              startIcon={<DeleteIcon />}
+              size="small"
               key={index}
               onClick={() => {
                 removeOption(index);
               }}
             >
               Remove option
-            </button>
+            </Button>
           ) : (
             <></>
           )}
