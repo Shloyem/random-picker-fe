@@ -4,3 +4,6 @@ https://mui.com/material-ui/getting-started/installation/
 
 To install:
 npm install @mui/material @emotion/react @emotion/styled
+
+Also recommended for icons:
+npm install @mui/icons-material
