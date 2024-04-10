@@ -1,4 +1,4 @@
-import Button from '@mui/material/Button';
+import { Button, TextField } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 type propsInfo = {
@@ -32,8 +32,11 @@ export default function OptionsContainer(props: propsInfo): JSX.Element {
   return (
     <div>
       {options.map((value, index) => (
-        <div key={`${value}-${index}`}>
-          <input
+        <div key={`${index}`}>
+          <TextField
+            key={index}
+            label={`Option ${index + 1}`}
+            color="secondary"
             value={value}
             onChange={(e) => {
               updateOption(index, e.target.value);
