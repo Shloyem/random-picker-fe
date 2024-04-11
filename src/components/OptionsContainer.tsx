@@ -32,7 +32,7 @@ export default function OptionsContainer(props: propsInfo): JSX.Element {
   return (
     <div>
       {options.map((value, index) => (
-        <div key={`${index}`}>
+        <div key={index}>
           <TextField
             key={index}
             label={`Option ${index + 1}`}
