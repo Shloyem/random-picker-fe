@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material';
+import { Button, TextField, Grid } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
 type propsInfo = {
@@ -30,38 +30,64 @@ export default function OptionsContainer(props: propsInfo): JSX.Element {
   }
 
   return (
-    <div>
+    <Grid container direction="column" spacing={2}>
       {options.map((value, index) => (
-        <div key={index}>
-          <TextField
-            key={index}
-            label={`Option ${index + 1}`}
-            color="secondary"
-            value={value}
-            onChange={(e) => {
-              updateOption(index, e.target.value);
-            }}
-          />
+        <Grid
+          key={`grid-item-${index}`}
+          container
+          direction="row"
+          alignItems="center"
+          spacing={2}
+        >
           {index >= 2 ? (
-            <Button
-              variant="outlined"
-              startIcon={<DeleteIcon />}
-              size="small"
-              key={index}
-              onClick={() => {
-                removeOption(index);
-              }}
-            >
-              Remove option
-            </Button>
+            <Grid item>
+              <Button
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+                size="small"
+                key={`remove-button2-${index}`}
+                onClick={() => removeOption(index)}
+                fullWidth
+                // sx={{ display: 'none' }}
+              >
+                Remove
+              </Button>
+            </Grid>
           ) : (
             <></>
           )}
-        </div>
+          <Grid item>
+            <TextField
+              key={`text-field-${index}`}
+              label={`Option ${index + 1}`}
+              color="secondary"
+              value={value}
+              onChange={(e) => updateOption(index, e.target.value)}
+              fullWidth
+              sx={{ width: '100%' }} // Ensure the TextField takes up the full width of its container
+            />
+          </Grid>
+          {index >= 2 ? (
+            <Grid item>
+              <Button
+                variant="outlined"
+                startIcon={<DeleteIcon />}
+                size="small"
+                key={`remove-button-${index}`}
+                onClick={() => removeOption(index)}
+                fullWidth
+              >
+                Remove
+              </Button>
+            </Grid>
+          ) : (
+            <></>
+          )}
+        </Grid>
       ))}
-      <div>
-        <button onClick={addOption}>Add option</button>
-      </div>
-    </div>
+      <Grid item>
+        <Button onClick={addOption}>Add option</Button>
+      </Grid>
+    </Grid>
   );
 }
