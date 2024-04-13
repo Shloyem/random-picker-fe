@@ -33,56 +33,45 @@ export default function OptionsContainer(props: propsInfo): JSX.Element {
     <Grid container direction="column" spacing={2}>
       {options.map((value, index) => (
         <Grid
+          item
           key={`grid-item-${index}`}
           container
           direction="row"
           alignItems="center"
           spacing={2}
         >
-          {index >= 2 ? (
-            <Grid item>
-              <Button
-                variant="outlined"
-                startIcon={<DeleteIcon />}
-                size="small"
-                key={`remove-button2-${index}`}
-                onClick={() => removeOption(index)}
-                fullWidth
-                // sx={{ display: 'none' }}
-              >
-                Remove
-              </Button>
-            </Grid>
-          ) : (
-            <></>
-          )}
-          <Grid item>
+          <Grid item xs={2}>
+            <Button
+              size="small"
+              key={`remove-button-${index}-left`}
+              sx={{ opacity: 0 }}
+              disabled
+            >
+              Remove
+            </Button>
+          </Grid>
+          <Grid item xs={8}>
             <TextField
               key={`text-field-${index}`}
               label={`Option ${index + 1}`}
               color="secondary"
               value={value}
               onChange={(e) => updateOption(index, e.target.value)}
-              fullWidth
-              sx={{ width: '100%' }} // Ensure the TextField takes up the full width of its container
             />
           </Grid>
-          {index >= 2 ? (
-            <Grid item>
-              <Button
-                variant="outlined"
-                startIcon={<DeleteIcon />}
-                size="small"
-                key={`remove-button-${index}`}
-                onClick={() => removeOption(index)}
-                fullWidth
-              >
-                Remove
-              </Button>
-            </Grid>
-          ) : (
-            <></>
-          )}
+          <Grid item xs={2}>
+            <Button
+              variant="outlined"
+              startIcon={<DeleteIcon />}
+              size="small"
+              key={`remove-button-${index}-right`}
+              onClick={() => removeOption(index)}
+              sx={{ opacity: index >= 2 ? 100 : 0 }}
+              disabled={index >= 2 ? false : true}
+            >
+              Remove
+            </Button>
+          </Grid>
         </Grid>
       ))}
       <Grid item>
