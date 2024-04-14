@@ -42,13 +42,10 @@ export default function OptionsContainer(props: propsInfo): JSX.Element {
         >
           <Grid item xs={2}>
             <Button
-              size="small"
-              key={`remove-button-${index}-left`}
+              key={`button-${index}-left`}
               sx={{ opacity: 0 }}
               disabled
-            >
-              Remove
-            </Button>
+            ></Button>
           </Grid>
           <Grid item xs={8}>
             <TextField
